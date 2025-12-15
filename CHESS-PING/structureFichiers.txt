@@ -1,0 +1,25 @@
+ChessPingPong/
+├── src/
+│   ├── jeu/                    # Logique métier du jeu
+│   │   ├── modele/            # Modèle - données et règles
+│   │   ├── controle/          # Contrôleur - gestion des interactions
+│   │   └── physique/          # Calculs physiques
+│   │
+│   ├── interface/             # Interface utilisateur
+│   │   ├── fenetres/          # Fenêtres principales
+│   │   ├── affichage/         # Composants d'affichage
+│   │   ├── formulaires/       # NOUVEAU: Panels de saisie
+│   │   ├── composants/        # Widgets personnalisés
+│   │   └── style/             # Styles
+│   │
+│   ├── ecoute/                # Gestionnaires d'événements
+│   │   ├── formulaire/        # NOUVEAU: Événements formulaires
+│   │   ├── validation/        # NOUVEAU: Validation des entrées
+│   │   ├── boutons/           # Événements boutons
+│   │   └── actions/           # Actions globales
+│   │
+│   └── lancement/             # Point d'entrée
+│
+├── ressources/
+│   ├── images/                # Images
+│   └── configuration/         # Fichiers de config

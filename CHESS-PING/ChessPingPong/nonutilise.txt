@@ -1,0 +1,51 @@
+Liste des fichiers retirés comme non utilisés par la fenêtre minimale actuelle:
+
+# interface/affichage
+src/interface/affichage/PanelBalle.java
+src/interface/affichage/PanelEchiquier.java
+src/interface/affichage/PanelInformation.java
+src/interface/affichage/PanelTrajectoirePreview.java
+src/interface/affichage/PanelZoneActuelle.java
+src/interface/affichage/Damier.java
+
+# interface/formulaires
+src/interface/formulaires/FormulaireAngle.java
+src/interface/formulaires/FormulairePosition.java
+src/interface/formulaires/FormulairePuissance.java
+src/interface/formulaires/FormulaireTour.java
+src/interface/formulaires/PanelSaisieJeu.java
+
+# interface/composants
+src/interface/composants/BoutonAnnuler.java
+src/interface/composants/BoutonPreview.java
+src/interface/composants/BoutonValider.java
+src/interface/composants/ChampAngle.java
+src/interface/composants/ChampPosition.java
+src/interface/composants/ChampPuissance.java
+src/interface/composants/IndicateurZone.java
+
+# interface/style
+src/interface/style/StyleEchiquier.java
+src/interface/style/StyleFormulaires.java
+src/interface/style/StyleInterface.java
+
+# ecoute
+src/ecoute/actions/*
+src/ecoute/boutons/*
+src/ecoute/formulaire/EcouteurChangementFormulaire.java
+src/ecoute/formulaire/EcouteurSaisieAngle.java
+src/ecoute/formulaire/EcouteurSaisiePosition.java
+src/ecoute/formulaire/EcouteurSaisiePuissance.java
+src/ecoute/validation/*
+
+Note: `interface/util/ImageEchiquierGenerator.java` conservé (utilisé par FenetrePrincipale). Les classes du modèle/physique/controle et lancement sont conservées.
+
+
+recree moi la fabatre et les listener de ce projet , dans formuailre , je veux un j annel :
+- dans le haut , il y aura 3 onglets : 1 le jeu en soit , 2 actualisation du nombre de vie des joueurs sur 
+    le plateau avec leurs images respectifs et 3 un bouton de reinitialisation du jeu. (un bouton recommencer la partie)
+-dans le 1 , le veux au cote gauche l echiquier avec les pions , a droite , je veux le formulaire (position, direction, puissance)
+    et en bas je veux un bouton voir la trajectoire , un autre bouton valider le mouvement ainsi que le le nom du joueur qui
+     est en train de jouer
+
+-creer les listener pour chacun de ses interface pour que se soit bien interactif 

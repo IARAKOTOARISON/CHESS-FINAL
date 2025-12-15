@@ -1,0 +1,65 @@
+### **ÉLÉMENTS COMPOSANTS**
+
+1. **Plateau (échiquier)**
+   - Taille : 8x8 cases.
+   - Les lignes 3, 4, 5 et 6 sont libres (pas de pions).
+   - Zones :
+     - Lignes 3 et 4 → zone des pions blancs.
+     - Lignes 5 et 6 → zone des pions noirs.
+
+2. **Pions**
+   - Types : roi, dame, tour, petits pions (pions standard).
+   - Attributs :
+        -nom
+        -image
+        -vie
+        -positionDepart
+   - Couleurs : blanc et noir.
+   - **Points de vie** :
+     - Roi = 4
+     - Dame = 3
+     - Tour = 2
+     - Petit pion = 1
+   - Position de départ : identique à celle d’une partie d’échecs classique.
+   - **Pas de déplacement** : les pions restent fixes sur leur case de départ.
+
+3. **Balle**
+   - Attributs :
+     - Position (x, y)
+     - Puissance (entier)
+     - Direction (angle de 0 à 360 degrés)
+   - Vitesse constante (pas de frottements).
+   - Le joueur ne peut la placer que dans sa propre zone.
+
+---
+
+### **RÈGLES DU JEU**
+
+1. **Tour d’un joueur** :
+   - Le joueur place la balle dans sa zone.
+   - Il choisit la puissance et la direction.
+   - La balle suit une trajectoire linéaire en fonction de ces paramètres.
+
+2. **Fin du tour** :
+   - La balle touche un pion (allié ou adverse).
+   - La balle rebondit sur un côté **parallèle** à la disposition initiale des pions.
+
+3. **Rebonds** :
+   - Sur les côtés **perpendiculaires** à la disposition des pions : la balle change de sens (inversion de la coordonnée x).
+   - Sur les côtés **parallèles** : le tour s’arrête immédiatement.
+
+4. **Dégâts aux pions** :
+   - Si la balle touche un pion, celui-ci perd **1 point de vie**.
+   - Quand les points de vie tombent à zéro, le pion est retiré.
+
+5. **Visualisation de la trajectoire** :
+   - Option “voir la trajectoire” : une ligne discontinue montre le chemin prévu.
+   - La longueur de la ligne est proportionnelle à la puissance.
+     - Exemple : 10 km/h → 10 px (règle de trois appliquée pour les autres puissances).
+
+---
+
+### **BUT DU JEU**
+
+- **Éliminer le roi adverse**.
+- La partie se termine dès qu’un roi est réduit à 0 point de vie.

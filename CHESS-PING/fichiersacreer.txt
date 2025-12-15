@@ -1,0 +1,271 @@
+Description détaillée des fichiers
+1. DOSSIER jeu/ 
+Sous-dossier modele/
+
+    Plateau.java - Échiquier 8x8
+
+    Piece.java - Classe de base pièces
+
+    Roi.java, Dame.java, Tour.java, Pion.java
+
+    Balle.java - Position, puissance, angle
+
+    Partie.java - État global
+
+    ConfigurationJeu.java
+
+Sous-dossier controle/
+
+    GestionnairePartie.java
+
+    ValidateurMouvement.java
+
+    ControleurTour.java
+
+    GestionnaireFin.java
+
+Sous-dossier physique/
+
+    CalculateurTrajectoire.java
+
+    DetecteurCollision.java
+
+    SimulateurRebond.java
+
+    ProjecteurTrajectoire.java
+
+2. DOSSIER interface/ - INTERFACE UTILISATEUR (MODIFIÉ)
+Sous-dossier fenetres/
+
+    FenetrePrincipale.java - Fenêtre principale avec 3 zones:
+
+        Zone gauche: Échiquier
+
+        Zone droite: Panel de contrôle avec formulaires
+
+        Zone bas: Panel d'information
+
+Sous-dossier affichage/
+
+    PanelEchiquier.java - Affiche échiquier + pièces
+
+    PanelBalle.java - Affiche la balle positionnée
+
+    PanelTrajectoirePreview.java - Affiche trajectoire pré-calculée (ligne discontinue)
+
+    PanelInformation.java - Tour actuel, scores, état
+
+    PanelZoneActuelle.java - Affiche la zone où la balle sera placée
+
+Sous-dossier formulaires/ (NOUVEAU)
+
+    FormulairePosition.java - Saisie X,Y de la balle
+
+        Champs: positionX (0-7), positionY (3-4 pour blanc, 5-6 pour noir)
+
+        Validation: vérifie que position dans zone autorisée
+
+        Affichage: coordonnées en cases (ex: "3.5, 4.2")
+
+    FormulairePuissance.java - Saisie puissance
+
+        Champ: puissance (1-100)
+
+        Option: curseur + champ texte
+
+        Unité: arbitraire (ex: 50 = vitesse moyenne)
+
+    FormulaireAngle.java - Saisie angle
+
+        Champ: angle (0-360 degrés)
+
+        Option: sélecteur circulaire ou champ numérique
+
+        Repère: 0° = droite, 90° = bas, etc.
+
+    FormulaireTour.java - Regroupe tous les champs d'un tour
+
+        Position + Puissance + Angle
+
+        Boutons: Valider, Preview, Annuler
+
+        Validation intégrée
+
+    PanelSaisieJeu.java - Panel principal regroupant tous les formulaires
+
+Sous-dossier composants/
+
+    ChampPosition.java - Champ texte avec validation position
+
+    ChampPuissance.java - Champ avec validation 1-100
+
+    ChampAngle.java - Champ avec validation 0-360
+
+    BoutonValider.java - Bouton validation tour
+
+    BoutonPreview.java - Bouton prévisualisation trajectoire
+
+    BoutonAnnuler.java - Bouton annulation saisie
+
+    IndicateurZone.java - Affiche visuellement la zone autorisée
+
+Sous-dossier style/
+
+    StyleFormulaires.java - Style des champs de saisie
+
+    StyleEchiquier.java
+
+    StyleInterface.java
+
+3. DOSSIER ecoute/ - GESTIONNAIRES D'ÉVÉNEMENTS (MODIFIÉ)
+Sous-dossier formulaire/ (NOUVEAU)
+
+    EcouteurSaisiePosition.java - Validation en temps réel position
+
+        Vérifie: zone autorisée selon joueur
+
+        Vérifie: format numérique
+
+        Met à jour: affichage position sur échiquier
+
+    EcouteurSaisiePuissance.java - Validation puissance
+
+        Vérifie: entre 1 et 100
+
+        Met à jour: longueur trajectoire preview
+
+    EcouteurSaisieAngle.java - Validation angle
+
+        Vérifie: entre 0 et 360
+
+        Convertit: radians si nécessaire
+
+        Met à jour: direction trajectoire preview
+
+    EcouteurChangementFormulaire.java - Réagit aux changements dans n'importe quel champ
+
+Sous-dossier validation/ (NOUVEAU)
+
+    ValidateurEntrees.java - Validation globale avant validation tour
+
+    ValidateurZone.java - Vérifie position dans zone joueur
+
+    ValidateurFormat.java - Vérifie formats numériques
+
+    ValidateurCoherence.java - Vérifie cohérence entre entrées
+
+Sous-dossier boutons/
+
+    EcouteurBoutonValider.java - Gère clic "Valider le tour"
+
+        Récupère: position, puissance, angle
+
+        Valide: toutes les entrées
+
+        Envoie: paramètres au contrôleur
+
+        Déclenche: lancement balle
+
+    EcouteurBoutonPreview.java - Gère clic "Voir trajectoire"
+
+        Récupère: valeurs actuelles des champs
+
+        Calcule: trajectoire prévue
+
+        Affiche: ligne discontinue sur échiquier
+
+        Option: garde affichée jusqu'à validation
+
+    EcouteurBoutonAnnuler.java - Gère clic "Annuler"
+
+        Réinitialise: tous les champs à valeurs par défaut
+
+        Efface: preview trajectoire
+
+        Remet: état initial
+
+    EcouteurBoutonLancer.java (ancien) - Maintenant intégré dans Valider
+
+Sous-dossier actions/
+
+    EcouteurFocusFormulaire.java - Gestion focus champs
+
+    EcouteurRaccourcisClavier.java - Raccourcis pour formulaires
+
+        Tab: navigation entre champs
+
+        Entrée: valider
+
+        Échap: annuler
+
+        Espace: preview
+
+4. NOUVEAU FLUX UTILISATEUR
+
+    Début du tour: Panel de saisie activé pour joueur actif
+
+    Saisie manuelle:
+
+        Position X (ex: 3.5)
+
+        Position Y (ex: 4.2) - automatiquement limitée à sa zone
+
+        Puissance (ex: 65)
+
+        Angle (ex: 45°)
+
+    Preview: Bouton "Voir trajectoire" → affiche ligne discontinue
+
+    Ajustement: Utilisateur modifie les valeurs, preview se met à jour
+
+    Validation: Bouton "Valider" → lance la balle avec ces paramètres
+
+    Exécution: Animation de la balle suivant la trajectoire calculée
+
+5. FICHIERS ESSENTIELS POUR CETTE VERSION
+
+    src/lancement/Main.java
+
+    src/jeu/modele/Plateau.java
+
+    src/jeu/modele/Balle.java
+
+    src/jeu/physique/CalculateurTrajectoire.java
+
+    src/interface/fenetres/FenetrePrincipale.java
+
+    src/interface/formulaires/FormulaireTour.java
+
+    src/interface/formulaires/FormulairePosition.java
+
+    src/interface/formulaires/FormulairePuissance.java
+
+    src/interface/formulaires/FormulaireAngle.java
+
+    src/interface/affichage/PanelTrajectoirePreview.java
+
+    src/ecoute/formulaire/EcouteurSaisiePosition.java
+
+    src/ecoute/boutons/EcouteurBoutonPreview.java
+
+    src/ecoute/boutons/EcouteurBoutonValider.java
+
+    src/ecoute/validation/ValidateurEntrees.java
+
+6. COMPOSANTS GRAPHIQUES NÉCESSAIRES
+
+Dans ressources/images/ui/:
+
+    icone_position.png - pour champ position
+
+    icone_puissance.png - pour champ puissance
+
+    icone_angle.png - pour champ angle
+
+    bouton_valider.png
+
+    bouton_preview.png
+
+    bouton_annuler.png
+
+    fond_formulaire.png

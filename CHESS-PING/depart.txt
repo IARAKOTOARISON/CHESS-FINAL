@@ -1,0 +1,37 @@
+                    CHESS - PINGPONG
+- pions utilises : roi, dame, les petits pions et les deux tours pour les 2 couleurs (noir et blanc)
+- on aura un echiquier normal de taille 8*8
+- on va avoir un element pion avec attribut : -position depart ()x;y -pointsVie (int)
+- pointsVie pour chaque pion :
+    -roi = 4
+    -dame = 3
+    -tour = 2
+    -petits pions = 1
+- les pions resteront a leur placede depart. il n y aura pas de deplacement particulier pour un pion comme dans l echec normal
+- les pions seront directement disposes a leur place habituelle lors du debut de partie
+- on laissera vide les places des pions absents de notre jeu
+- le but du jeu reste le meme : la partie se termine quand un joueur arrive a destituer le roi de l autre
+- on aura donc les lignes de libre 3, 4, 5 et 6
+- on va departager ses 2 lignes en deux zones : 
+    -lignes 3 et 4 --> zone des pions blancs
+    -lignes 5 et 6 --> zone des pions noirs
+- on aura un element qu on va appeler balle avec les attributs : -position(x;y) -puissance(int) -direction(degre / angle)
+  -la direction sera un angle entre 0 a 36 degre
+  -la puissance est la ou tu indiques a quelle vitesse tu veux que ta balle aille
+  -la position est ou veut tu le placer dans ta zone
+- quand c est le tour d un joueur, il va placer la balle dans sa zone , entrer la puissance desiree et la direction
+  -le joueur ne peut positionner la balle que dans sa zone uniquement
+  -la balle aura toujours une vitesse constante, on ne considere pas les frottements
+- le joueur adverse perd son pion quand tu envoies la balle dans la case du pion.
+    --> le pion en question perd un point de vie a chaque fois
+- le tour du joueur s arrete quand il touche un pion (que ce soit le sien meme ou celui de l adversaire)
+- mais:
+  -quand la balle va rebondir sur les cotes de lechiquier parallele a la disposition des pions de depart ,
+   le tour de ce joueur s arrete meme si il n a touche aucun pion
+  -quand la balle va rebondir sur les cotes de lechiquier perpendiculaire a la disposition des pions de depart ,
+    la balle va juste changer de sens de sens (faire * -1 les coordonnees de x)
+- on mettra une option "voir la trajectoire" dans lequel on aura une idee de latrajectoire des ricochets de la balle :
+  -ce sera represente par un trait discontinu
+  -le trait prendra la direction que tu as mis
+  -plus la puissance est grande, plus le trait sera long
+    -on va mettre une base par exemple 10km/h equivaut a un trait discontinu de 10 px et on fera la regle de 3 a partir de ca
